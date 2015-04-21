@@ -2,44 +2,50 @@
 
 namespace Codifico\Component\Actions\Action;
 
-use Codifico\Component\Action\Repository\ActionRepositoryInterface;
-use Codifico\Component\Action\Request\QueryCriteria;
+use Codifico\Component\Actions\Repository\ActionRepositoryInterface;
+use Codifico\Component\Actions\Request\Criteria;
 
-class IndexAction implements ActionInterface
+/**
+ * Index entities from given repository filtered by query criteria
+ */
+class IndexAction implements ActionInterface, CriteriaAwareActionInterface
 {
     /**
-     * @var RepositoryInterface
+     * @var ActionRepositoryInterface
      */
     private $repository;
 
     /**
-     * @var QueryCriteria
+     * @var Criteria
      */
-    private $queryCriteria;
+    private $criteria;
 
+    /**
+     * @param ActionRepositoryInterface $repository
+     */
     public function __construct(ActionRepositoryInterface $repository)
     {
         $this->repository = $repository;
     }
 
     /**
-     * @param QueryCriteria $queryCriteria
+     * @param Criteria $criteria
      */
-    public function setQueryCriteria(QueryCriteria $queryCriteria)
+    public function setCriteria(Criteria $criteria)
     {
-        $this->queryCriteria = $queryCriteria;
+        $this->criteria = $criteria;
     }
 
     /**
-     * @internal param QueryCriteria $queryCriteria
+     * @internal param Criteria $criteria
      *
      * @return array
      */
     public function __invoke()
     {
         return [
-            'result' => $this->repository->findByQueryCriteria($this->queryCriteria),
-            'total' => $this->repository->countByQueryCriteria($this->queryCriteria),
+            'result' => $this->repository->findByCriteria($this->criteria),
+            'total' => $this->repository->countByCriteria($this->criteria),
         ];
     }
 }

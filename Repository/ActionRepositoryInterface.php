@@ -2,11 +2,24 @@
 
 namespace Codifico\Component\Actions\Repository;
 
-use Codifico\Component\Actions\Request\QueryCriteria;
+use Codifico\Component\Actions\Request\Criteria;
 
+/**
+ * Action repository interface
+ */
 interface ActionRepositoryInterface
 {
-    public function findByQueryCriteria(QueryCriteria $queryCriteria);
+    /**
+     * Finds results in repository based on given criteria
+     *
+     * @param Criteria $queryCriteria
+     */
+    public function findByCriteria(Criteria $queryCriteria);
 
-    public function countByQueryCriteria(QueryCriteria $queryCriteria);
+    /**
+     * Counts results in repository based on given criteria (excluding limit and offset)
+     *
+     * @param Criteria $queryCriteria
+     */
+    public function countByCriteria(Criteria $queryCriteria);
 }

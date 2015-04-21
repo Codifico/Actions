@@ -3,7 +3,7 @@
   "description": "Action component",
   "version": "1.0.0-dev",
   "type": "library",
-  "keywords": ["codifico", "action"],
+  "keywords": ["codifico", "actions"],
   "homepage": "http://codifico.pl/",
   "license": "proprietary",
   "authors": [
@@ -20,6 +20,6 @@
     "phpspec/phpspec": "~2.0"
   },
   "autoload": {
-    "psr-4": { "Codifico\\Component\\Action\\": "" }
+    "psr-4": { "Codifico\\Component\\Actions\\": "" }
   }
 }

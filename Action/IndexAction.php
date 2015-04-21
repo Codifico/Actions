@@ -1,9 +1,9 @@
 <?php
 
-namespace Codifico\Bundle\ExtraBundle\Actions;
+namespace Codifico\Component\Actions\Action;
 
-use Codifico\Bundle\ExtraBundle\Repository\RepositoryInterface;
-use Codifico\Bundle\ExtraBundle\Request\QueryCriteria;
+use Codifico\Component\Action\Repository\ActionRepositoryInterface;
+use Codifico\Component\Action\Request\QueryCriteria;
 
 class IndexAction implements ActionInterface
 {
@@ -17,7 +17,7 @@ class IndexAction implements ActionInterface
      */
     private $queryCriteria;
 
-    public function __construct(RepositoryInterface $repository)
+    public function __construct(ActionRepositoryInterface $repository)
     {
         $this->repository = $repository;
     }

@@ -14,9 +14,7 @@
     }
   ],
   "require": {
-    "php": ">=5.4",
-    "ext-redis": "*",
-    "yetanotherape/diff-match-patch": "~1.0"
+    "php": ">=5.4"
   },
   "require-dev": {
     "phpspec/phpspec": "~2.0"

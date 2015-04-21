@@ -1,6 +1,6 @@
 <?php
 
-namespace Codifico\Bundle\ExtraBundle\Actions;
+namespace Codifico\Component\Actions\Action;
 
 /**
  * Common action interface

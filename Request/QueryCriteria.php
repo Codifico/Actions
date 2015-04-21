@@ -1,6 +1,6 @@
 <?php
 
-namespace Codifico\Bundle\ExtraBundle\Request;
+namespace Codifico\Component\Actions\Request;
 
 class QueryCriteria
 {
@@ -23,25 +23,16 @@ class QueryCriteria
         $this->orderBy = $orderBy;
     }
 
-    /**
-     * @return mixed
-     */
     public function getFilters()
     {
         return $this->filters;
     }
 
-    /**
-     * @return mixed
-     */
     public function getCount()
     {
         return $this->count;
     }
 
-    /**
-     * @return mixed
-     */
     public function getPage()
     {
         return $this->page;

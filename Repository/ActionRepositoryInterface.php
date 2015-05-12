@@ -22,4 +22,11 @@ interface ActionRepositoryInterface
      * @param Criteria $queryCriteria
      */
     public function countByCriteria(Criteria $queryCriteria);
+
+    /**
+     * Creates new instance of object
+     *
+     * @return mixed
+     */
+    public function create();
 }

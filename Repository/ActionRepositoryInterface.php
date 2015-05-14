@@ -12,16 +12,16 @@ interface ActionRepositoryInterface
     /**
      * Finds results in repository based on given criteria
      *
-     * @param Criteria $queryCriteria
+     * @param Criteria $criteria
      */
-    public function findByCriteria(Criteria $queryCriteria);
+    public function findByCriteria(Criteria $criteria);
 
     /**
      * Counts results in repository based on given criteria (excluding limit and offset)
      *
-     * @param Criteria $queryCriteria
+     * @param Criteria $criteria
      */
-    public function countByCriteria(Criteria $queryCriteria);
+    public function countByCriteria(Criteria $criteria);
 
     /**
      * Creates new instance of object
@@ -29,4 +29,12 @@ interface ActionRepositoryInterface
      * @return mixed
      */
     public function create();
+
+    /**
+     * Removes entity from the repository
+     *
+     * @param $entity
+     * @return void
+     */
+    public function remove($entity);
 }

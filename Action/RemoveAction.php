@@ -2,22 +2,31 @@
 
 namespace Codifico\Component\Actions\Action;
 
-
-use Codifico\Bundle\DocumentBundle\Event\DocumentEvent;
-use Codifico\Bundle\TextBundle\TextEvents;
 use Codifico\Component\Actions\Repository\ActionRepositoryInterface;
-use Codifico\Component\Document\Action\DocumentAwareActionInterface;
-use Codifico\Component\Document\DocumentInterface;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
-use Symfony\Component\Form\FormFactoryInterface;
-use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
-class RemoveAction implements ActionInterface, DocumentAwareActionInterface
+abstract class RemoveAction implements ActionInterface
 {
-    private $dispatcher;
-    private $repository;
-    private $document;
+    /**
+     * @var EventDispatcherInterface
+     */
+    protected $dispatcher;
 
+    /**
+     * @var ActionRepositoryInterface
+     */
+    private $repository;
+
+    /**
+     * @var mixed
+     */
+    private $object;
+
+    /**
+     * @param ActionRepositoryInterface $repository
+     * @param EventDispatcherInterface $dispatcher
+     */
     public function __construct(
         ActionRepositoryInterface $repository,
         EventDispatcherInterface $dispatcher
@@ -34,14 +43,22 @@ class RemoveAction implements ActionInterface, DocumentAwareActionInterface
      */
     public function __invoke()
     {
-        $this->repository->remove($this->document);
+        $this->repository->remove($this->object);
 
-        $event = new DocumentEvent($this->document);
-        $this->dispatcher->dispatch(TextEvents::DOCUMENT_REMOVE, $event);
+        $this->dispatchEvent($this->object);
     }
 
-    public function setDocument(DocumentInterface $document)
+    /**
+     * @param $object
+     * @return void
+     */
+    abstract public function dispatchEvent($object);
+
+    /**
+     * @param mixed $object
+     */
+    public function setObject($object)
     {
-        $this->document = $document;
+        $this->object = $object;
     }
 }

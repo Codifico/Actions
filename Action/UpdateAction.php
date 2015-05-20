@@ -2,23 +2,42 @@
 
 namespace Codifico\Component\Actions\Action;
 
-
-use Codifico\Bundle\DocumentBundle\Event\DocumentEvent;
-use Codifico\Bundle\TextBundle\TextEvents;
-use Codifico\Component\Actions\Repository\ActionRepositoryInterface;
-use Codifico\Component\Document\DocumentInterface;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\HttpFoundation\Request;
 
-class UpdateAction implements ActionInterface
+abstract class UpdateAction implements ActionInterface
 {
-    private $dispatcher;
-    private $type;
-    private $formFactory;
-    private $request;
-    private $document;
+    /**
+     * @var EventDispatcherInterface
+     */
+    protected $dispatcher;
 
+    /**
+     * @var FormTypeInterface|string
+     */
+    private $type;
+
+    /**
+     * @var FormFactoryInterface
+     */
+    private $formFactory;
+
+    /**
+     * @var Request
+     */
+    private $request;
+
+    /**
+     * @var mixed
+     */
+    private $object;
+
+    /**
+     * @param EventDispatcherInterface $dispatcher
+     * @param FormFactoryInterface $formFactory
+     * @param string|FormTypeInterface $type
+     */
     public function __construct(
         EventDispatcherInterface $dispatcher,
         FormFactoryInterface $formFactory,
@@ -29,14 +48,14 @@ class UpdateAction implements ActionInterface
         $this->type = $type;
     }
 
+    /**
+     * Set request data to handle it by form type
+     *
+     * @param Request $request
+     */
     public function setRequest(Request $request)
     {
         $this->request = $request;
-    }
-
-    public function setDocument(DocumentInterface $document)
-    {
-        $this->document = $document;
     }
 
     /**
@@ -46,16 +65,29 @@ class UpdateAction implements ActionInterface
      */
     public function __invoke()
     {
-        $form = $this->formFactory->createNamed('', new $this->type, $this->document);
+        $form = $this->formFactory->createNamed('', new $this->type, $this->object);
         $form->handleRequest($this->request);
 
         if ($form->isValid()) {
-            $event = new DocumentEvent($this->document);
-            $this->dispatcher->dispatch(TextEvents::DOCUMENT_UPDATE, $event);
+            $this->dispatchEvent($this->object);
 
-            return $this->document;
+            return $this->object;
         }
 
         return $form;
+    }
+
+    /**
+     * @param $object
+     * @return void
+     */
+    abstract public function dispatchEvent($object);
+
+    /**
+     * @param mixed $object
+     */
+    public function setObject($object)
+    {
+        $this->object = $object;
     }
 }

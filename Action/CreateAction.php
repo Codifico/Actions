@@ -77,7 +77,7 @@ abstract class CreateAction implements ActionInterface
     public function __invoke()
     {
         $object = $this->repository->create();
-        $form = $this->formFactory->createNamed('', new $this->type, $object);
+        $form = $this->formFactory->createNamed('', $this->type, $object);
         $form->handleRequest($this->request);
 
         if ($form->isValid()) {

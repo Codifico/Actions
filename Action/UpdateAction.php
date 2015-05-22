@@ -6,7 +6,7 @@ use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\HttpFoundation\Request;
 
-abstract class UpdateAction implements ActionInterface
+abstract class UpdateAction implements ActionInterface, UpdateActionInterface
 {
     /**
      * @var EventDispatcherInterface

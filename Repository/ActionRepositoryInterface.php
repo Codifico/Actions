@@ -37,4 +37,12 @@ interface ActionRepositoryInterface
      * @return void
      */
     public function remove($entity);
+
+    /**
+     * Adds new instance to repository
+     *
+     * @param $entity
+     * @return mixed
+     */
+    public function add($entity);
 }

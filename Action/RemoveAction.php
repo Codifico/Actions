@@ -4,7 +4,6 @@ namespace Codifico\Component\Actions\Action;
 
 use Codifico\Component\Actions\Repository\ActionRepositoryInterface;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
-use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
 abstract class RemoveAction implements ActionInterface
 {
@@ -21,18 +20,15 @@ abstract class RemoveAction implements ActionInterface
     /**
      * @var mixed
      */
-    private $object;
+    protected $object;
 
     /**
      * @param ActionRepositoryInterface $repository
-     * @param EventDispatcherInterface $dispatcher
      */
     public function __construct(
-        ActionRepositoryInterface $repository,
-        EventDispatcherInterface $dispatcher
+        ActionRepositoryInterface $repository
     )
     {
-        $this->dispatcher = $dispatcher;
         $this->repository = $repository;
     }
 

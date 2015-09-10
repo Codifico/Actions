@@ -8,6 +8,7 @@ use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormTypeInterface;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\RequestStack;
 
 /**
  * Abstract action to creates entity
@@ -16,11 +17,6 @@ use Symfony\Component\HttpFoundation\Request;
  */
 abstract class CreateAction implements ActionInterface
 {
-    /**
-     * @var EventDispatcherInterface
-     */
-    protected $dispatcher;
-
     /**
      * @var ActionRepositoryInterface
      */
@@ -42,31 +38,28 @@ abstract class CreateAction implements ActionInterface
     private $request;
 
     /**
+     * @var RequestStack
+     */
+    private $stack;
+
+    /**
      * @param ActionRepositoryInterface $repository
-     * @param EventDispatcherInterface $dispatcher
      * @param FormFactoryInterface $formFactory
      * @param string|FormTypeInterface $type
      */
     public function __construct(
         ActionRepositoryInterface $repository,
-        EventDispatcherInterface $dispatcher,
         FormFactoryInterface $formFactory,
         $type)
     {
-        $this->dispatcher = $dispatcher;
         $this->repository = $repository;
         $this->formFactory = $formFactory;
         $this->type = $type;
     }
 
-    /**
-     * Set request data to handle it by form type
-     *
-     * @param Request $request
-     */
-    public function setRequest(Request $request)
+    public function setRequestStack(RequestStack $stack)
     {
-        $this->request = $request;
+        $this->stack = $stack;
     }
 
     /**
@@ -76,11 +69,13 @@ abstract class CreateAction implements ActionInterface
      */
     public function __invoke()
     {
-        $object = $this->repository->create();
-        $form = $this->formFactory->createNamed('', $this->type, $object);
-        $form->handleRequest($this->request);
+        $form = $this->formFactory->createNamed('', $this->type);
+        $form->handleRequest($this->stack->getCurrentRequest());
 
         if ($form->isValid()) {
+            $object = $form->getData();
+            $this->repository->add($object);
+
             $this->dispatchEvent($object);
 
             return $object;

@@ -4,15 +4,11 @@ namespace Codifico\Component\Actions\Action;
 
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\Form\FormFactoryInterface;
+use Symfony\Component\Form\FormTypeInterface;
 use Symfony\Component\HttpFoundation\Request;
 
 abstract class UpdateAction implements ActionInterface, UpdateActionInterface
 {
-    /**
-     * @var EventDispatcherInterface
-     */
-    protected $dispatcher;
-
     /**
      * @var FormTypeInterface|string
      */
@@ -34,16 +30,13 @@ abstract class UpdateAction implements ActionInterface, UpdateActionInterface
     private $object;
 
     /**
-     * @param EventDispatcherInterface $dispatcher
      * @param FormFactoryInterface $formFactory
      * @param string|FormTypeInterface $type
      */
     public function __construct(
-        EventDispatcherInterface $dispatcher,
         FormFactoryInterface $formFactory,
         $type)
     {
-        $this->dispatcher = $dispatcher;
         $this->formFactory = $formFactory;
         $this->type = $type;
     }
@@ -65,7 +58,7 @@ abstract class UpdateAction implements ActionInterface, UpdateActionInterface
      */
     public function __invoke()
     {
-        $form = $this->formFactory->createNamed('', new $this->type, $this->object);
+        $form = $this->formFactory->createNamed('', $this->type, $this->object);
         $form->handleRequest($this->request);
 
         if ($form->isValid()) {

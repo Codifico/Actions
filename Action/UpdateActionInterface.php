@@ -2,8 +2,6 @@
 
 namespace Codifico\Component\Actions\Action;
 
-use Symfony\Component\HttpFoundation\Request;
-
 interface UpdateActionInterface
 {
     /**
@@ -17,10 +15,5 @@ interface UpdateActionInterface
      * @param $object
      * @return void
      */
-    public function dispatchEvent($object);
-
-    /**
-     * @param mixed $object
-     */
-    public function setObject($object);
+    public function postUpdate($object);
 }

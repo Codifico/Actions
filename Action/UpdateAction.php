@@ -63,7 +63,7 @@ abstract class UpdateAction implements ActionInterface, UpdateActionInterface
         $form->handleRequest($this->stack->getCurrentRequest());
 
         if ($form->isValid()) {
-            $this->dispatchEvent($this->object);
+            $this->postUpdate($this->object);
 
             return $this->object;
         }
@@ -75,12 +75,12 @@ abstract class UpdateAction implements ActionInterface, UpdateActionInterface
      * @param $object
      * @return void
      */
-    abstract public function dispatchEvent($object);
+    abstract public function postUpdate($object);
 
     /**
      * @param mixed $object
      */
-    public function setObject($object)
+    protected function setObject($object)
     {
         $this->object = $object;
     }

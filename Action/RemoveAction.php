@@ -8,11 +8,6 @@ use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 abstract class RemoveAction implements ActionInterface
 {
     /**
-     * @var EventDispatcherInterface
-     */
-    protected $dispatcher;
-
-    /**
      * @var ActionRepositoryInterface
      */
     private $repository;
@@ -41,19 +36,19 @@ abstract class RemoveAction implements ActionInterface
     {
         $this->repository->remove($this->object);
 
-        $this->dispatchEvent($this->object);
+        $this->postRemove($this->object);
     }
 
     /**
      * @param $object
      * @return void
      */
-    abstract public function dispatchEvent($object);
+    abstract public function postRemove($object);
 
     /**
      * @param mixed $object
      */
-    public function setObject($object)
+    protected function setObject($object)
     {
         $this->object = $object;
     }

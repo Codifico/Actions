@@ -33,11 +33,6 @@ abstract class CreateAction implements ActionInterface
     private $formFactory;
 
     /**
-     * @var Request
-     */
-    private $request;
-
-    /**
      * @var RequestStack
      */
     private $stack;
@@ -74,10 +69,9 @@ abstract class CreateAction implements ActionInterface
 
         if ($form->isValid()) {
             $object = $form->getData();
-
             $this->repository->add($object);
 
-            $this->dispatchEvent($object);
+            $this->postCreate($object);
 
             return $object;
         }
@@ -89,5 +83,5 @@ abstract class CreateAction implements ActionInterface
      * @param $object
      * @return void
      */
-    abstract protected function dispatchEvent($object);
+    abstract protected function postCreate($object);
 }

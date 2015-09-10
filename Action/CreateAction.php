@@ -74,6 +74,7 @@ abstract class CreateAction implements ActionInterface
 
         if ($form->isValid()) {
             $object = $form->getData();
+
             $this->repository->add($object);
 
             $this->dispatchEvent($object);

@@ -6,6 +6,7 @@ use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\Form\FormTypeInterface;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\RequestStack;
 
 abstract class UpdateAction implements ActionInterface, UpdateActionInterface
 {
@@ -20,15 +21,14 @@ abstract class UpdateAction implements ActionInterface, UpdateActionInterface
     private $formFactory;
 
     /**
-     * @var Request
-     */
-    private $request;
-
-    /**
      * @var mixed
      */
     private $object;
 
+    /**
+     * @var RequestStack
+     */
+    private $stack;
     /**
      * @param FormFactoryInterface $formFactory
      * @param string|FormTypeInterface $type
@@ -44,12 +44,13 @@ abstract class UpdateAction implements ActionInterface, UpdateActionInterface
     /**
      * Set request data to handle it by form type
      *
-     * @param Request $request
+     * @param RequestStack $stack
      */
-    public function setRequest(Request $request)
+    public function setRequestStack(RequestStack $stack)
     {
-        $this->request = $request;
+        $this->stack = $stack;
     }
+
 
     /**
      * Creates new entity
@@ -59,7 +60,7 @@ abstract class UpdateAction implements ActionInterface, UpdateActionInterface
     public function __invoke()
     {
         $form = $this->formFactory->createNamed('', $this->type, $this->object);
-        $form->handleRequest($this->request);
+        $form->handleRequest($this->stack->getCurrentRequest());
 
         if ($form->isValid()) {
             $this->dispatchEvent($this->object);

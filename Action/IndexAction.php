@@ -30,10 +30,14 @@ class IndexAction implements ActionInterface, CriteriaAwareActionInterface
 
     /**
      * @param Criteria $criteria
+     *
+     * @return IndexAction
      */
     public function setCriteria(Criteria $criteria)
     {
         $this->criteria = $criteria;
+
+        return $this;
     }
 
     /**

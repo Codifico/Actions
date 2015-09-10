@@ -7,13 +7,6 @@ use Symfony\Component\HttpFoundation\Request;
 interface UpdateActionInterface
 {
     /**
-     * Set request data to handle it by form type
-     *
-     * @param Request $request
-     */
-    public function setRequest(Request $request);
-
-    /**
      * Creates new entity
      *
      * @return mixed

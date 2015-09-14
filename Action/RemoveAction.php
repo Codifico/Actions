@@ -32,7 +32,7 @@ abstract class RemoveAction implements ActionInterface
      *
      * @return mixed
      */
-    public function __invoke()
+    public function execute()
     {
         $this->repository->remove($this->object);
 

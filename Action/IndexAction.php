@@ -45,7 +45,7 @@ class IndexAction implements ActionInterface, CriteriaAwareActionInterface
      *
      * @return array
      */
-    public function __invoke()
+    public function execute()
     {
         return [
             'result' => $this->repository->findByCriteria($this->criteria),

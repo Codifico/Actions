@@ -9,7 +9,7 @@ interface UpdateActionInterface
      *
      * @return mixed
      */
-    public function __invoke();
+    public function execute();
 
     /**
      * @param $object

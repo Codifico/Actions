@@ -62,7 +62,7 @@ abstract class CreateAction implements ActionInterface
      *
      * @return FormInterface
      */
-    public function __invoke()
+    public function execute()
     {
         $form = $this->formFactory->createNamed('', $this->type);
         $form->handleRequest($this->stack->getCurrentRequest());

@@ -35,8 +35,8 @@ abstract class UpdateAction implements ActionInterface, UpdateActionInterface
      */
     public function __construct(
         FormFactoryInterface $formFactory,
-        $type)
-    {
+        $type
+    ) {
         $this->formFactory = $formFactory;
         $this->type = $type;
     }
@@ -51,13 +51,12 @@ abstract class UpdateAction implements ActionInterface, UpdateActionInterface
         $this->stack = $stack;
     }
 
-
     /**
      * Creates new entity
      *
      * @return mixed
      */
-    public function __invoke()
+    public function execute()
     {
         $form = $this->formFactory->createNamed('', $this->type, $this->object);
         $form->handleRequest($this->stack->getCurrentRequest());

@@ -12,5 +12,5 @@ interface ActionInterface
      *
      * @return mixed
      */
-    public function __invoke();
+    public function execute();
 }

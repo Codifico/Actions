@@ -5,7 +5,7 @@ namespace Codifico\Component\Actions\Action;
 use Codifico\Component\Actions\Repository\ActionRepositoryInterface;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
-abstract class RemoveAction implements ActionInterface
+abstract class RemoveAction implements ActionInterface, RemoveActionInterface
 {
     /**
      * @var ActionRepositoryInterface

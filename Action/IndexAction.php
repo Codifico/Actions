@@ -41,8 +41,6 @@ class IndexAction implements ActionInterface, CriteriaAwareActionInterface
     }
 
     /**
-     * @internal param Criteria $criteria
-     *
      * @return array
      */
     public function execute()

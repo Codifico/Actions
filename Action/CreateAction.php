@@ -15,7 +15,7 @@ use Symfony\Component\HttpFoundation\RequestStack;
  *
  * @package Codifico\Component\Actions\Action
  */
-abstract class CreateAction implements ActionInterface
+abstract class CreateAction implements ActionInterface, CreateActionInterface
 {
     /**
      * @var ActionRepositoryInterface
@@ -83,5 +83,5 @@ abstract class CreateAction implements ActionInterface
      * @param $object
      * @return void
      */
-    abstract protected function postCreate($object);
+    abstract public function postCreate($object);
 }

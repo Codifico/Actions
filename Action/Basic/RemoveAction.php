@@ -23,8 +23,7 @@ abstract class RemoveAction implements Action, RemoveActionInterface
      */
     public function __construct(
         ActionRepository $repository
-    )
-    {
+    ) {
         $this->repository = $repository;
     }
 

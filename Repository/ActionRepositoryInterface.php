@@ -24,13 +24,6 @@ interface ActionRepositoryInterface
     public function countByCriteria(Criteria $criteria);
 
     /**
-     * Creates new instance of object
-     *
-     * @return mixed
-     */
-    public function create();
-
-    /**
      * Removes entity from the repository
      *
      * @param $entity

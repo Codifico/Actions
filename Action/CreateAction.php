@@ -20,22 +20,22 @@ abstract class CreateAction implements ActionInterface, CreateActionInterface
     /**
      * @var ActionRepositoryInterface
      */
-    private $repository;
+    protected $repository;
 
     /**
      * @var string|FormTypeInterface
      */
-    private $type;
+    protected $type;
 
     /**
      * @var FormFactoryInterface
      */
-    private $formFactory;
+    protected $formFactory;
 
     /**
      * @var RequestStack
      */
-    private $stack;
+    protected $stack;
 
     /**
      * @param ActionRepositoryInterface $repository

@@ -5,7 +5,7 @@ namespace Codifico\Component\Actions\Action;
 /**
  * Common action interface
  */
-interface ActionInterface
+interface Action
 {
     /**
      * Execute given actions

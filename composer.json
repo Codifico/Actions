@@ -14,7 +14,9 @@
     }
   ],
   "require": {
-    "php": ">=5.4"
+    "php": ">=5.4",
+    "symfony/form": "*",
+    "symfony/http-foundation": "*"
   },
   "require-dev": {
     "phpspec/phpspec": "~2.0"

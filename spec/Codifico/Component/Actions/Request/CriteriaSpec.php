@@ -2,9 +2,13 @@
 
 namespace spec\Codifico\Component\Actions\Request;
 
+use Codifico\Component\Actions\Request\Criteria;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 
+/**
+ * @mixin Criteria
+ */
 class CriteriaSpec extends ObjectBehavior
 {
     function let()

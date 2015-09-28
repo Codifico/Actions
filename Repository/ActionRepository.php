@@ -7,7 +7,7 @@ use Codifico\Component\Actions\Request\Criteria;
 /**
  * Action repository interface
  */
-interface ActionRepositoryInterface
+interface ActionRepository
 {
     /**
      * Finds results in repository based on given criteria

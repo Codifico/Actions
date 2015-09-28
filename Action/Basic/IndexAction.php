@@ -1,17 +1,19 @@
 <?php
 
-namespace Codifico\Component\Actions\Action;
+namespace Codifico\Component\Actions\Action\Basic;
 
-use Codifico\Component\Actions\Repository\ActionRepositoryInterface;
+use Codifico\Component\Actions\Action\Action;
+use Codifico\Component\Actions\Repository\ActionRepository;
 use Codifico\Component\Actions\Request\Criteria;
+use Codifico\Component\Actions\Request\CriteriaAware;
 
 /**
  * Index entities from given repository filtered by query criteria
  */
-class IndexAction implements ActionInterface, CriteriaAwareActionInterface
+class IndexAction implements Action, CriteriaAware
 {
     /**
-     * @var ActionRepositoryInterface
+     * @var ActionRepository
      */
     private $repository;
 
@@ -21,9 +23,9 @@ class IndexAction implements ActionInterface, CriteriaAwareActionInterface
     private $criteria;
 
     /**
-     * @param ActionRepositoryInterface $repository
+     * @param ActionRepository $repository
      */
-    public function __construct(ActionRepositoryInterface $repository)
+    public function __construct(ActionRepository $repository)
     {
         $this->repository = $repository;
     }

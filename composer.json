@@ -1,7 +1,6 @@
 {
   "name": "codifico/actions",
   "description": "Action component",
-  "version": "1.0.0-dev",
   "type": "library",
   "keywords": ["codifico", "actions"],
   "homepage": "http://codifico.pl/",

@@ -7,9 +7,12 @@ Common action based coupled to components:
 Allows you to quickly create CRUD actions.
 
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/Codifico/Actions/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/Codifico/Actions/?branch=master)
+[![SensioLabsInsight](https://insight.sensiolabs.com/projects/2753701a-54fc-4eaa-8b08-a39a22142407/mini.png)](https://insight.sensiolabs.com/projects/2753701a-54fc-4eaa-8b08-a39a22142407)
+
 [![Latest Stable Version](https://poser.pugx.org/codifico/actions/v/stable)](https://packagist.org/packages/codifico/actions)
 [![Latest Unstable Version](https://poser.pugx.org/codifico/actions/v/unstable)](https://packagist.org/packages/codifico/actions)
 [![Total Downloads](https://poser.pugx.org/codifico/actions/downloads)](https://packagist.org/packages/codifico/actions)
+[![License](https://poser.pugx.org/codifico/actions/license.svg)](https://packagist.org/packages/codifico/actions)
 
 ## Instalation
 

@@ -35,8 +35,8 @@ If you want to use the basic version (based on Form and HttpFoundation Component
 ```php
 use Codifico\Component\Actions\Action\Basic\CreateAction;
 use Codifico\Component\Actions\Action\Basic\IndexAction;
-use Codifico\Component\Actions\Action\Basic\;
-use Codifico\Component\Actions\Action\Basic\;
+use Codifico\Component\Actions\Action\Basic\RemoveAction;
+use Codifico\Component\Actions\Action\Basic\UpdateAction;
 
 class MyEntityCreateAction extends CreateAction 
 {

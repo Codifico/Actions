@@ -4,7 +4,7 @@
   "type": "library",
   "keywords": ["codifico", "actions"],
   "homepage": "http://codifico.pl/",
-  "license": "proprietary",
+  "license": "MIT",
   "authors": [
     {
       "name": "Marcin Dryka",

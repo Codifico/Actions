@@ -2,6 +2,8 @@
 
 namespace Codifico\Component\Actions\Action;
 
+use Symfony\Component\HttpFoundation\RequestStack;
+
 interface UpdateAction
 {
     /**
@@ -16,4 +18,6 @@ interface UpdateAction
      * @return void
      */
     public function postUpdate($object);
+
+    public function setRequestStack(RequestStack $requestStack);
 }
